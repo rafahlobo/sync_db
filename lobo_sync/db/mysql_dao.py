@@ -58,6 +58,7 @@ class Mysql_dao():
 
     def connect(self):
         try:
+            self._kwargs.update({"auth_plugin":"mysql_native_password"})
             return mysql.connector.connect(*self._args, **self._kwargs)
         except mysql.connector.InterfaceError as e:
             raise NotPossibleConnectionException(e)
